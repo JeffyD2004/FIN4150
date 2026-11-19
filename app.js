@@ -202,4 +202,11 @@
   }
 
   main();
+
+  // Progressive web app: the service worker lets the app install and work offline.
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(err => console.warn('Service worker not registered:', err));
+    });
+  }
 })();
