@@ -19,6 +19,12 @@
     <section id="firms">
       <h2>Firm U and Firm L (question c)</h2>
       <p class="note" id="firms-note"></p>
+      <div class="lever">
+        <label for="firm-l-debt">Firm L's debt: <output id="firm-l-debt-out"></output></label>
+        <input type="range" id="firm-l-debt">
+        <div class="buttons"><button type="button" id="btn-case">Case</button></div>
+        <p class="note" id="firm-l-rate-note"></p>
+      </div>
       <div class="firm-grid">
         <div class="firm" id="firm-u"></div>
         <div class="firm" id="firm-l"></div>
@@ -30,11 +36,28 @@
       <p class="note" id="cdss-note"></p>
       <p id="zero-check" class="warning" hidden></p>
 
-      <h3>Case method: buy back at today's <span id="p0"></span></h3>
+      <div class="lever">
+        <label for="cdss-debt">CDSS's debt: <output id="cdss-debt-out"></output></label>
+        <input type="range" id="cdss-debt" min="0" step="1">
+        <div class="ticks" id="cdss-ticks"></div>
+        <div class="buttons">
+          <button type="button" id="btn-best-price">Best price</button>
+          <button type="button" id="btn-best-eps">Highest EPS</button>
+        </div>
+        <p id="button-note" class="note" hidden></p>
+      </div>
+      <div class="method-grid">
+        <div class="method-card" id="card-case"></div>
+        <div class="method-card" id="card-new"></div>
+      </div>
+
+      <h3 class="all-amounts">Every amount in the banker's schedule</h3>
+
+      <h3 class="sub">Case method: buy back at today's <span id="p0"></span></h3>
       <p class="note">Questions d(3) and d(4). Shares repurchased = D / P₀; price = EPS / r<sub>s</sub>. WACC uses book weights, as in the AGE solution for d(7).</p>
       <div id="case-table"></div>
 
-      <h3>New-price method: buy back at the price after the announcement</h3>
+      <h3 class="sub">New-price method: buy back at the price after the announcement</h3>
       <p class="note">Value of equity S = net income / r<sub>s</sub>; price P = (S + D) / n; shares repurchased = D / P. WACC uses market weights.</p>
       <div id="new-table"></div>
 

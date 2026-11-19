@@ -195,8 +195,23 @@
     };
   }
 
+  // Where the Best price / Highest EPS buttons send the CDSS slider.
+  // Same amount under both methods: go there. Different: go to the case
+  // method's amount and say so. (Each pick already takes the smaller debt on a tie.)
+  function buttonTarget(caseDebt, newDebt) {
+    return { debt: caseDebt, agree: caseDebt === newDebt, caseDebt, newDebt };
+  }
+
+  // The amounts the Firm L slider stops at: 0, step, 2·step, ... up to max.
+  function sliderStops(max, step) {
+    const stops = [];
+    for (let d = 0; d <= max + 1e-9; d += step) stops.push(d);
+    return stops;
+  }
+
   return {
     parseCSV, num, toLookup, roundHalfUp, expected, stdDev,
     exampleFirm, cdssEbit, cdssRow, cdssAnalysis, managementStake,
+    buttonTarget, sliderStops,
   };
 });
