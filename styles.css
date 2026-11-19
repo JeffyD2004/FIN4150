@@ -1,0 +1,117 @@
+:root {
+  --bg: #f7f6f3;
+  --surface: #ffffff;
+  --text: #1d1d1b;
+  --muted: #5f5e5a;
+  --line: #e2e0da;
+  --accent: #8a1c1c;          /* Utah Tech-ish red */
+  --best-bg: #eef6ee;
+  --best-text: #1f5f2a;
+  --warn-bg: #fff4e0;
+  --warn-text: #7a4a00;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161615;
+    --surface: #1f1f1d;
+    --text: #ecebe7;
+    --muted: #a9a7a0;
+    --line: #34332f;
+    --accent: #e38b8b;
+    --best-bg: #1d3221;
+    --best-text: #a6dcae;
+    --warn-bg: #3a2c12;
+    --warn-text: #f3cf8d;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+header, main, footer { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+header { padding-top: 28px; }
+.eyebrow { color: var(--accent); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; font-size: 12px; margin: 0; }
+h1 { margin: 4px 0 8px; font-size: 28px; }
+h2 { margin: 36px 0 6px; font-size: 21px; }
+h3 { margin: 26px 0 4px; font-size: 17px; }
+.lede { color: var(--muted); max-width: 70ch; margin: 0; }
+.note { color: var(--muted); font-size: 13.5px; margin: 0 0 10px; max-width: 80ch; }
+footer { color: var(--muted); font-size: 13px; padding-bottom: 32px; margin-top: 32px; }
+code { font-size: 0.92em; }
+
+.warning { background: var(--warn-bg); color: var(--warn-text); padding: 10px 12px; border-radius: 8px; }
+
+/* ---- tables ---- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+}
+th, td { padding: 7px 10px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+thead th { font-size: 12.5px; color: var(--muted); font-weight: 600; background: var(--bg); }
+tbody tr:last-child td { border-bottom: 0; }
+tr.subtotal td { font-weight: 600; }
+tr.stat td { background: var(--bg); }
+tr.best td { background: var(--best-bg); color: var(--best-text); font-weight: 600; }
+caption { text-align: left; font-weight: 600; padding: 0 0 6px; }
+
+/* Firm U and Firm L side by side, stacked on phones */
+.firm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 760px) { .firm-grid { grid-template-columns: 1fr; } }
+
+.summary { margin-top: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.summary ul { margin: 6px 0 0; padding-left: 20px; }
+
+/* CDSS tables become one card per amount of debt on narrow screens */
+@media (max-width: 760px) {
+  table.cards, table.cards tbody, table.cards tr, table.cards td { display: block; width: 100%; }
+  table.cards thead { display: none; }
+  table.cards { border: 0; background: transparent; }
+  table.cards tr { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+  table.cards td { display: flex; justify-content: space-between; text-align: right; white-space: normal; padding: 6px 12px; }
+  table.cards td::before { content: attr(data-label); color: var(--muted); text-align: left; padding-right: 12px; }
+  table.cards td:first-child { font-weight: 700; background: var(--bg); }
+  table.cards tbody tr:last-child td { border-bottom: 1px solid var(--line); }
+  table.cards tr td:last-child { border-bottom: 0; }
+}
+
+/* ---- levers (Part C) ---- */
+.lever { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin: 12px 0 16px; }
+.lever label { font-weight: 600; display: block; }
+.lever output { color: var(--accent); }
+.lever input[type="range"] { width: 100%; margin: 10px 0 2px; accent-color: var(--accent); }
+.lever .note { margin: 8px 0 0; }
+.ticks { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+button {
+  font: inherit; font-weight: 600; font-size: 14px;
+  padding: 7px 14px; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--accent); background: transparent; color: var(--accent);
+}
+button:hover { background: var(--accent); color: var(--surface); }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 760px) { .method-grid { grid-template-columns: 1fr; } }
+.method-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-variant-numeric: tabular-nums; }
+.method-card h4 { margin: 0; font-size: 15px; }
+.method-card .price { font-size: 30px; font-weight: 700; margin: 6px 0 8px; display: flex; flex-direction: column; line-height: 1.15; }
+.method-card .price.best-price { color: var(--best-text); }
+.method-card .line { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; border-top: 1px solid var(--line); }
+.method-card .line span:first-child { color: var(--muted); }
+.method-card .line span:last-child { text-align: right; }
+.small { font-size: 12.5px; color: var(--muted); font-weight: 400; margin: 2px 0 0; }
+.warn-inline { color: var(--warn-text); }
+h3.all-amounts { margin-top: 32px; font-size: 18px; }
+h3.sub { font-size: 15.5px; }
+tr.selected td:first-child { box-shadow: inset 4px 0 0 var(--accent); }
